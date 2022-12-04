@@ -22,7 +22,7 @@ RUNNING_DIR="$(dirname "$REALPATH")"
 
 # Set AppRun environment variables based on config settings
 [ "$APPRUN_SET_PATH" = "TRUE" ] && export PATH="$RUNNING_DIR"/usr/bin/:"$RUNNING_DIR"/usr/sbin/:"$RUNNING_DIR"/usr/games/:"$RUNNING_DIR"/bin/:"$RUNNING_DIR"/sbin/:"$PATH"
-[ "$APPRUN_SET_LD_LIBRARY_PATH" = "TRUE" ] && export LD_LIBRARY_PATH="$RUNNING_DIR"/usr/lib/:"$RUNNING_DIR"/usr/lib/i386-linux-gnu/:"$RUNNING_DIR"/usr/lib/x86_64-linux-gnu/:"$RUNNING_DIR"/usr/lib32/:"$RUNNING_DIR"/usr/lib64/:"$RUNNING_DIR"/lib/:"$RUNNING_DIR"/lib/i386-linux-gnu/:"$RUNNING_DIR"/lib/x86_64-linux-gnu/:"$RUNNING_DIR"/lib32/:"$RUNNING_DIR"/lib64/:"${LD_LIBRARY_PATH}":"$RUNNING_DIR"/usr/lib/x86_64-linux-gnu/pulseaudio"
+[ "$APPRUN_SET_LD_LIBRARY_PATH" = "TRUE" ] && export LD_LIBRARY_PATH="$RUNNING_DIR"/usr/lib/:"$RUNNING_DIR"/usr/lib/i386-linux-gnu/:"$RUNNING_DIR"/usr/lib/x86_64-linux-gnu/:"$RUNNING_DIR"/usr/lib32/:"$RUNNING_DIR"/usr/lib64/:"$RUNNING_DIR"/lib/:"$RUNNING_DIR"/lib/i386-linux-gnu/:"$RUNNING_DIR"/lib/x86_64-linux-gnu/:"$RUNNING_DIR"/lib32/:"$RUNNING_DIR"/lib64/:"${LD_LIBRARY_PATH}":"$RUNNING_DIR"/usr/lib/x86_64-linux-gnu/pulseaudio
 [ "$APPRUN_SET_PYTHONPATH" = "TRUE" ] && export PYTHONPATH="$RUNNING_DIR"/usr/share/pyshared/:"$PYTHONPATH"
 [ "$APPRUN_SET_PYTHONHOME" = "TRUE" ] && export PYTHONHOME="$RUNNING_DIR"/usr/:"$PYTHONHOME"
 [ "$APPRUN_SET_PYTHONDONTWRITEBYTECODE" = "TRUE" ] && export PYTHONDONTWRITEBYTECODE=1
