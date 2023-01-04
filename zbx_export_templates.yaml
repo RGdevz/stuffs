@@ -1,0 +1,44 @@
+zabbix_export:
+  version: '6.2'
+  date: '2023-01-04T12:42:00Z'
+  template_groups:
+    -
+      uuid: 882098d2241643aca4bd404e2050d515
+      name: test
+  templates:
+    -
+      uuid: fd84cfb65bce434c876e697fe0c47c94
+      template: windows_ip_adresses
+      name: windows_ip_adresses
+      groups:
+        -
+          name: test
+      items:
+        -
+          uuid: ff5fed5607cb49449215ef73b05ddaa1
+          name: get_ips
+          type: ZABBIX_ACTIVE
+          key: 'wmi.getall[root\cimv2,"select ipaddress from win32_networkadapterconfiguration where IPEnabled=True"]'
+          trends: '0'
+          value_type: TEXT
+          preprocessing:
+            -
+              type: JAVASCRIPT
+              parameters:
+                - |
+                  var output = ''
+                  
+                  var parse = JSON.parse(value)
+                  
+                  for (var i = 0; i < parse.length; i++) {
+                  output +=  parse[i]['IPAddress'][0]
+                  if (i !== parse.length-1){
+                  output += ', '
+                  }
+                  }
+                  
+                  return output
+          tags:
+            -
+              tag: ip_addresses
+              value: all_ips
