@@ -3,3 +3,4 @@ electron_vite
 vitespa
 node-lib-starter
 yode-starter
+android-app-starter
