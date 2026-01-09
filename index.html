@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div style="display: flex; flex-direction: column; gap: 2rem; max-width: 700px; margin-inline: auto; text-align: center;">
+    <h4>input</h4>
+    <textarea style="height: 400px; resize: none;" id="input"></textarea>
+
+    <button id="fix-btn">fix</button>
+
+    <h4>fix</h4>
+
+    <textarea style="height: 400px; resize: none; " readonly id="out" id="out"></textarea>
+
+
+    </div>
+
+    
+</body>
+
+<script >
+
+
+document.getElementById('fix-btn').addEventListener('click',()=>{
+
+ const input = document.getElementById('input').value
+ const output = document.getElementById('out')
+ output.value = fixPrompt(input)
+
+}
+)
+
+
+    function fixPrompt(p) {
+  let fix = p.trim().replaceAll(/\s+/g, " ").trim();
+  const searchSograim = fix.matchAll(/\(([^)]+)\)/g);
+  let inSograim = Array.from(searchSograim).map((x) => x[0]);
+  for (let p2 of inSograim) {
+    fix = fix.replaceAll(p2, "");
+  }
+  inSograim = inSograim.map((x) => x.slice(1, -1).split(",").map((x2) => x2.trim()).join(",")).map((x) => `(${x})`);
+  fix = fix.split(",").map((x) => x.trim()).filter(Boolean);
+  fix.push(...inSograim);
+  fix = fix.map((x) => x.replaceAll(/\s+/g, "_")).join(",\n").replaceAll("_:", ":").replaceAll(">_", ">\n");
+  const lores = fix.split("\n").filter((x) => x.startsWith("<lora"));
+  const final = [...fix.split("\n").filter((x) => !x.startsWith("<lora")), ...lores].join("\n");
+  return final;
+}
+
+
+
+</script>
+
+</html>
